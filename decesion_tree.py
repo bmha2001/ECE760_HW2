@@ -124,24 +124,22 @@ def visualize_tree(tree):
         visualize_tree(tree.right)
 
 
-# Load your data here (X and y)
-# X should be a numpy array with shape (n_samples, n_features)
-# y should be a numpy array with shape (n_samples,)
-#d = np.loadtxt("Homework 2 data/D2.txt", dtype="float")
-#X = d[:,:2]
-#y = d[:,2:].astype(int)
-# Build the decision tree
-#tree = build_decision_tree(X, y)
+
+d = np.loadtxt("Homework 2 data/D2.txt", dtype="float")
+X = d[:,:2]
+y = d[:,2:].astype(int)
+
+tree = build_decision_tree(X, y)
 
 
 
-# Make predictions
-# dt = np.loadtxt("Homework 2 data/D1.txt", dtype="float")
-# Xt = dt[:,:2]
-# yt = dt[:,2:].astype(int)
-# test_example = Xt[1]  # Replace x1 and x2 with your test data
-# prediction = predict(tree, test_example)
-# print("Predicted class:", prediction)
+
+dt = np.loadtxt("Homework 2 data/D1.txt", dtype="float")
+Xt = dt[:,:2]
+yt = dt[:,2:].astype(int)
+test_example = Xt[1]  # Replace x1 and x2 with your test data
+prediction = predict(tree, test_example)
+print("Predicted class:", prediction)
 
 d = np.loadtxt("Homework 2 data/Dbig.txt", dtype="float")
 X = d[:,:2]
@@ -157,25 +155,25 @@ n_values = [32, 128, 512, 2048, 8192]  # Training set sizes
 num_nodes_list = []  # Number of nodes in decision trees
 test_errors = []  # Test set errors
 
-# # Train decision trees for different training set sizes
-# for n in n_values:
-#     # Take the first n items from the training set
-#     X_train_n = X_train[:n]
-#     y_train_n = y_train[:n]
+# Train decision trees for different training set sizes
+for n in n_values:
+    # Take the first n items from the training set
+    X_train_n = X_train[:n]
+    y_train_n = y_train[:n]
 
-#     # Train a decision tree classifier
-#     tree = build_decision_tree(X_train_n, y_train_n)
-#     print("tree built")
-#     errors = 0
-#     for i in range(len(X_test)):
-#        if predict(tree, X_test[i]) != y_test[i]:
-#            errors += 1
+    # Train a decision tree classifier
+    tree = build_decision_tree(X_train_n, y_train_n)
+    print("tree built")
+    errors = 0
+    for i in range(len(X_test)):
+       if predict(tree, X_test[i]) != y_test[i]:
+           errors += 1
 
-#     print("n val: ", n, " errors: ", errors, " num nodes: ", num_nodes(tree))
-#     plt.scatter(X_test[y_test.flatten()==0][:, 0], X_test[y_test.flatten()==0][:, 1], label='Class 0', marker='o', color='blue')
-#     plt.scatter(X_test[y_test.flatten() == 1][:, 0], X_test[y_test.flatten() == 1][:, 1], label='Class 1', marker='x', color='red')
-#     visualize_tree(tree)
-#     plt.show()
+    print("n val: ", n, " errors: ", errors, " num nodes: ", num_nodes(tree))
+    plt.scatter(X_test[y_test.flatten()==0][:, 0], X_test[y_test.flatten()==0][:, 1], label='Class 0', marker='o', color='blue')
+    plt.scatter(X_test[y_test.flatten() == 1][:, 0], X_test[y_test.flatten() == 1][:, 1], label='Class 1', marker='x', color='red')
+    visualize_tree(tree)
+    plt.show()
 
 for n in n_values:
 # Take the first n items from the training set
